@@ -59,7 +59,7 @@ def make_pipe(directory, chipdir, capacity):
     os.makedirs(chipdir, exist_ok=True)
 
     # start the pipeline as a list on inout files
-    pipe = [os.path.join(directory, f) for f in  os.listdir(directory)]
+    pipe = [os.path.join(directory, f) for f in  os.listdir(directory) if 'laz' in f]
 
     # append the chipper stage to pipeline
     pipe.append(
