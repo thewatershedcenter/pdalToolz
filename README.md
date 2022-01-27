@@ -1,5 +1,10 @@
 # pdalToolz
-Scripts wrapping pdal pipelines to simplify tasks
+Scripts wrapping pdal pipelines to simplify tasks. See [PDAl](https://pdal.io/index.html) for more information.
+
+Unless otherwise indicated, all files in the PDAL distribution are
+
+    Copyright (c) 2019, Hobu, Inc. (howard@hobu.co)[howard@hobu.co]
+
 
 # Docker
 There the `pdal_docker` directory has a docker capable of running any of the scripts.
