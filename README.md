@@ -3,7 +3,7 @@ Scripts wrapping pdal pipelines to simplify tasks. See [PDAl](https://pdal.io/in
 
 Unless otherwise indicated, all files in the PDAL distribution are
 
-    Copyright (c) 2019, Hobu, Inc. (howard@hobu.co)[howard@hobu.co]
+Copyright (c) 2019, Hobu, Inc. (howard@hobu.co)[howard@hobu.co]
 
 
 # Docker
