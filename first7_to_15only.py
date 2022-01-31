@@ -67,8 +67,6 @@ def make_pipe(input, outdir):
     # make sure outdir exists
     os.makedirs(outdir, exist_ok=True)
 
-
-
     # make a place for the jsons to live (demolish old home if exists)
     jsonhouse = os.path.join(outdir, 'jsonhouse')
 
@@ -79,39 +77,42 @@ def make_pipe(input, outdir):
 
     # make a list of files
     if os.path.isdir(input):
-        files = [f for f in os.listdir(input) if ('.laz' in f or '.las' in f)]
+        files = [os.path.join(input, f)
+                 for f
+                 in os.listdir(input)
+                 if ('.laz' in f or '.las' in f)]
 
     else:
-        files = [input]
+        files = [os.path.join(os.path.dirname(input), input)]
 
     # make the json(s)
-        for f in files:
+    for f in files:
 
-            # make output filename
-            basename = os.path.basename(f).partition('.')[0]
-            outname = f'{basename}_conductor15.laz'
+        # make output filename
+        basename = os.path.basename(f).partition('.')[0]
+        outname = os.path.join(outdir, f'{basename}_conductor15.laz')
 
-            # make the pipeline
-            pipe = [
-                        f,
-                            {
-                                'type': 'filters.range',
-                                'limits': 'Classification[7:7],ReturnNumber[1:1]'
-                            },
-                            {
-                                'type': 'filters.assign',
-                                'value': 'Classification = 15'
-                            },
-                        outname
-                    ]
+        # make the pipeline
+        pipe = [
+                    f,
+                        {
+                            'type': 'filters.range',
+                            'limits': 'Classification[7:7],ReturnNumber[1:1]'
+                        },
+                        {
+                            'type': 'filters.assign',
+                            'value': 'Classification = 15'
+                        },
+                    outname
+                ]
 
-            # dump the json
-            dump_path = os.path.join(jsonhouse, f'{basename}.json')
+        # dump the json
+        dump_path = os.path.join(jsonhouse, f'{basename}.json')
 
-            with open(dump_path, 'w') as f:
-                json.dump(pipe, f, indent=6)
+        with open(dump_path, 'w') as wf:
+            json.dump(pipe, wf, indent=6)
 
-    print(f'jsons written to {dump_path}')
+    print(f'jsons written to {jsonhouse}')
 
     return(jsonhouse)
 
@@ -121,14 +122,14 @@ def run_pipes(jsonhouse):
 
     if len(os.listdir(jsonhouse)) == 1:
         # get the sinlge file
-        j = os.listdir(jsonhouse)[0]
+        j = os.path.join(jsonhouse, os.listdir(jsonhouse)[0])
 
         # make the command
         cmd = f'pdal pipeline -i {j}'
 
     else:
         # make the comand with gnu ||
-        cmd = f'ls {jsonhouse} | parallel -j{ncores-1} pdal pipeline -i {{}}'
+        cmd = f'find {jsonhouse} -type f  | parallel -j{ncores-1} pdal pipeline -i {{}}'
 
     # run the pipeline(s)
     _ = subprocess.run(cmd, shell=True)
