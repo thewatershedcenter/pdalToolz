@@ -27,7 +27,7 @@ optional arguments:
 ```
 
 # fisrt7_to_15only.py
-Selects by the following criteria:
+Selects points by the following criteria:
 ```
 'limits': 'Classification[7:7],ReturnNumber[1:1], Intensity[19250:29900]'
 ```
