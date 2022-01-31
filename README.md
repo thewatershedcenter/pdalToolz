@@ -29,7 +29,7 @@ optional arguments:
 # fisrt7_to_15only.py
 Selects points by the following criteria:
 ```
-'limits': 'Classification[7:7],ReturnNumber[1:1], Intensity[19250:29900]'
+'limits': 'Classification[7:7], ReturnNumber[1:1], Intensity[19250:29900]'
 ```
 Then reclassifies them as 15 and writes a new point cloud with `_conductor15` inserted into the original filename.
 

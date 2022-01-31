@@ -97,7 +97,7 @@ def make_pipe(input, outdir):
                     f,
                         {
                             'type': 'filters.range',
-                            'limits': 'Classification[7:7],ReturnNumber[1:1], Intensity[19250:29900]'
+                            'limits': 'Classification[7:7], ReturnNumber[1:1], Intensity[19250:29900]'
                         },
                         {
                             'type': 'filters.assign',
