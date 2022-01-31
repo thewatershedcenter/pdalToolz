@@ -52,7 +52,7 @@ def parse_arguments():
 
     if not args.output_directory:
         if args.file:
-            args.output_directory = os.path.dirname(args.file)
+            args.output_directory = os.path.dirname(f'./{args.file}')
             args.input = args.file
         else:
             args.output_directory = args.directory
