@@ -97,7 +97,7 @@ def make_pipe(input, outdir):
                     f,
                         {
                             'type': 'filters.range',
-                            'limits': 'Classification[7:7],ReturnNumber[1:1]'
+                            'limits': 'Classification[7:7],ReturnNumber[1:1], Intensity[19250:29900]'
                         },
                         {
                             'type': 'filters.assign',
@@ -144,3 +144,9 @@ if __name__ == '__main__':
 
     # run the pipes
     run_pipes(jsonhouse)
+
+    # remove jsonhouse
+    shutil.rmtree(jsonhouse)
+
+    # give some indocation that the whole thing ran
+    print('Avslutad!')

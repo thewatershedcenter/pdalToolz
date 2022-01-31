@@ -26,3 +26,26 @@ optional arguments:
   --capacity CAPACITY   Desired number of points per chip, default = 10^6
 ```
 
+# fisrt7_to_15only.py
+Selects by the following criteria:
+```
+'limits': 'Classification[7:7],ReturnNumber[1:1], Intensity[19250:29900]'
+```
+Then reclassifies them as 15 and writes a new point cloud with `_conductor15` inserted into the original filename.
+
+```
+usage: first7_to_15only.py [-h] [--file FILE] [--directory DIRECTORY]
+                           [--output_directory OUTPUT_DIRECTORY]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --file FILE           File to be processed, required if no directory is
+                        specified.
+  --directory DIRECTORY
+                        Directory of files to be processed, required if no
+                        directory is specified.
+  --output_directory OUTPUT_DIRECTORY
+                        Directory in which output will be placed. If not
+                        specified will default to intput directory
+
+```
