@@ -1,5 +1,9 @@
-FROM continuumio/miniconda3:4.10.3p0-alpine
+FROM pdal/pdal:2.1
 
-RUN conda install -c conda-forge pdal python-pdal gdal xarray-spatial geocube rapids
+RUN apt-get update && \
+    apt-get install -y apt-utils && \
+    apt-get install -y parallel python3 python3-pip cython
+
+RUN python3 -m pip install --upgrade osgeo pyproj==3.3.0 geopandas xarray-spatial geocube rioxarray dask
 
 ENTRYPOINT [ "bash" ]
