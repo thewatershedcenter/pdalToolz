@@ -49,3 +49,19 @@ optional arguments:
                         specified will default to intput directory
 
 ```
+# conductor_trim.py
+Does everything `fisrt7_to_15only.py` does as well as clipping by an overlay vector.
+
+```
+usage: conductor_trim.py [-h] [--file FILE] --overlay OVERLAY
+                         [--output_directory OUTPUT_DIRECTORY]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --file FILE           File to be processed,.
+  --overlay OVERLAY     vecotr overlay. Must be in same crs as --file
+  --output_directory OUTPUT_DIRECTORY
+                        Directory in which output will be placed. If not
+                        specified will default to intput directory
+
+```

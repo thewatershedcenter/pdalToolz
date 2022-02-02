@@ -9,6 +9,7 @@ import geopandas as gpd
 import numpy as np
 import subprocess
 import xarray as xr
+import rioxarray
 from geocube.api.core import make_geocube
 from xrspatial import proximity
 from dask import delayed, compute
@@ -29,22 +30,25 @@ def parse_arguments():
     )
 
     parser.add_argument(
-        '--output_dir',
+        '--feeder',
         type=str,
-        required=False,
-        help='''Directory where laz files will be placed upon running pipeline.
-                If omitted files will be written to PWD'''
+        required=True,
+        help='Name of feeder'
     )
 
     parser.add_argument(
-        '--buffer',
-        type=float,
-        required=True,
-        help='Width of buffer in files native projected units'
+        '--outfile',
+        type=str,
+        required=False,
+        help='''Path to output file. Defaults to ./out.tiff'''
     )
+
 
     # parse the args
     args = parser.parse_args()
+
+    if not args.outfile:
+        args.outfile = './out.tiff'
 
     return(args)
 
@@ -69,6 +73,9 @@ def rasterize_to_xarray(df):
     Makes proximity raster based on spans.
     '''
 
+    # get feeder name
+    feeder = df.gs_feeder_.unique()[0]
+
     # find the crs
     crs = df.crs
 
@@ -91,3 +98,14 @@ def rasterize_to_xarray(df):
     g.attrs = {'feeder' : feeder, 'crs' : crs}
 
     return(g)
+
+
+if __name__ == '__main__':
+
+    args = parse_arguments()
+
+    df = read_filter(args.spans, args.feeder)
+
+    xr = rasterize_to_xarray(df)
+
+    xr['distance'].rio.to_raster(args.outfile)

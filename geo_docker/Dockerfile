@@ -1,9 +1,7 @@
-FROM pdal/pdal:2.1
+FROM python:3.9.10-slim-bullseye
 
-RUN apt-get update && \
-    apt-get install -y apt-utils && \
-    apt-get install -y parallel python3 python3-pip cython
+RUN apt-get update
 
-RUN python3 -m pip install --upgrade osgeo pyproj==3.3.0 geopandas xarray-spatial geocube rioxarray dask
+RUN python3 -m pip install geopandas rioxarray xarray-spatial
 
 ENTRYPOINT [ "bash" ]
