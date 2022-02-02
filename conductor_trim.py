@@ -66,7 +66,7 @@ def make_pipe(input, outdir, overlay):
 
     # make output filename
     basename = os.path.basename(input).partition('.')[0]
-    outname = os.path.join(outdir, f'{basename}_conductor14 .laz')
+    outname = os.path.join(outdir, f'{basename}_conductor14.laz')
 
     # make the pipeline
     pipe = [
