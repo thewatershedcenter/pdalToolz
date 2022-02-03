@@ -123,7 +123,7 @@ if __name__ == '__main__':
     args = parse_arguments()
 
     # make the pipes
-    jsonhouse = make_pipe(args.input, args.output_directory, args.overlay)
+    jsonhouse = make_pipe(args.file, args.output_directory, args.overlay)
 
     # run the pipes
     run_pipes(jsonhouse)
