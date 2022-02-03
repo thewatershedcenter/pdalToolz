@@ -40,7 +40,9 @@ def parse_arguments():
         required=False,
         help='''Directory in which output will be placed.
                 If not specified will default to directory
-                of --spans'''
+                of --spans. Output will be a directory with
+                the--spans file name mius the extension with
+                _buffer oppended.'''
     )
 
     parser.add_argument(
