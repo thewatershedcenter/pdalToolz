@@ -101,19 +101,28 @@ optional arguments:
 
 # Typical workflow
 Start the geo docker with the ,
-```./geo_docker_start.sh```
+```
+./geo_docker_start.sh
+```
 then cs to data
-```cd /data```
+```
+cd /data
+```
 then run
-```python3 conductor_trim.py --spans=spans.gpkg --feeder='W02' --buffer=20```
+```
+python3 conductor_trim.py --spans=spans.gpkg --feeder='W02' --buffer=20
+```
 A directory calle `spans_buffer` containing a shapefile `spans_6339.shp` should have apeared.
 Exit the geo_docker.
-```exit```
+```
+exit
+```
 Start the pdal docker and change directories
 ```
 ./pdal_docker_start.sh
 cd /data
 ```
+
 
 
 
