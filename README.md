@@ -127,6 +127,6 @@ Then run
 conductor_trim.py --file=los_puntos.laz --overlay=spans_buffer/spans_6339.shp --output_directory=.
 ```
 A file called `los_puntos_conductor14.laz' should now be in /data. Exit pdal_docker.
-T
+
 
  TODO: finish this...
